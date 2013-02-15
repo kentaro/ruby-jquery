@@ -16,15 +16,15 @@ module JQuery
       @args  = args.map do |arg|
         case arg
         when ::Proc
-          Lambda.new(arg)
+          JQuery::Lambda.new(arg)
         when ::Numeric
-          Numeric.new(arg)
+          JQuery::Numeric.new(arg)
         when ::Symbol
-          Var.new(arg)
+          JQuery::Var.new(arg)
         when ::Hash, ::Array
-          Struct.new(arg)
+          JQuery::Struct.new(arg)
         else
-          String.new(arg)
+          JQuery::String.new(arg)
         end
       end
     end
