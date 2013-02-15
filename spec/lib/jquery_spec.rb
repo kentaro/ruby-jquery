@@ -22,25 +22,25 @@ module Kernel
 
     context 'when called with a integer argument' do
       it {
-        expect(jQuery(1).to_s).to be == 'jQuery(1)'
+        expect(jQuery('a').text(1).to_s).to be == 'jQuery("a").text(1)'
       }
     end
 
     context 'when called with a float argument' do
       it {
-        expect(jQuery(0.1).to_s).to be == 'jQuery(0.1)'
+        expect(jQuery("a").text(0.1).to_s).to be == 'jQuery("a").text(0.1)'
       }
     end
 
     context 'when called with an array argument' do
       it {
-        expect(jQuery(['a', 'b']).to_s).to be == 'jQuery(["a","b"])'
+        expect(jQuery('a').foo(['a', 'b']).to_s).to be == 'jQuery("a").foo(["a","b"])'
       }
     end
 
     context 'when called with a hash argument' do
       it {
-        expect(jQuery({'a' => 'b'}).to_s).to be == 'jQuery({"a":"b"})'
+        expect(jQuery('a').foo({'a' => 'b'}).to_s).to be == 'jQuery("a").foo({"a":"b"})'
       }
     end
 
@@ -50,9 +50,9 @@ module Kernel
       }
     end
 
-    context 'when called with method chain' do
+    context 'when called with method chain and various arguments' do
       it {
-        expect(jQuery('a').text().to_s).to be == 'jQuery("a").text()'
+        expect(jQuery('a').click(->(f) { f.e 'return true' }).to_s).to be == 'jQuery("a").click(function (e) { return true })'
       }
     end
   end
