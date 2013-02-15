@@ -14,13 +14,14 @@ module JQuery
     def initialize(label, *args)
       @label = label.to_s
       @args  = args.map do |arg|
-        if arg.kind_of?(Proc)
+        case arg
+        when ::Proc
           Lambda.new(arg)
-        elsif arg.kind_of?(::Numeric)
+        when ::Numeric
           Numeric.new(arg)
-        elsif arg.kind_of?(Symbol)
+        when ::Symbol
           Var.new(arg)
-        elsif arg.kind_of?(Hash) || arg.kind_of?(Array)
+        when ::Hash, ::Array
           Struct.new(arg)
         else
           String.new(arg)
