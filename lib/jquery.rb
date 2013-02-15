@@ -16,10 +16,7 @@ module JQuery
       @args  = args.map do |arg|
         if arg.kind_of?(Proc)
           Lambda.new(arg)
-
-        # `arg.kind_of?(Numeric)` isn't true.
-        # Why not???
-        elsif arg.kind_of?(Integer) || arg.kind_of?(Float)
+        elsif arg.kind_of?(::Numeric)
           Numeric.new(arg)
         elsif arg.kind_of?(Symbol)
           Var.new(arg)
