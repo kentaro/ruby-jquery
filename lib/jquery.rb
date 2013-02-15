@@ -14,19 +14,17 @@ module JQuery
     def initialize(label, *args)
       @label = label.to_s
       @args  = args.map do |arg|
-        if arg.kind_of?(Proc)
-          Lambda.new(arg)
-
-        # `arg.kind_of?(Numeric)` isn't true.
-        # Why not???
-        elsif arg.kind_of?(Integer) || arg.kind_of?(Float)
-          Numeric.new(arg)
-        elsif arg.kind_of?(Symbol)
-          Var.new(arg)
-        elsif arg.kind_of?(Hash) || arg.kind_of?(Array)
-          Struct.new(arg)
+        case arg
+        when ::Proc
+          JQuery::Lambda.new(arg)
+        when ::Numeric
+          JQuery::Numeric.new(arg)
+        when ::Symbol
+          JQuery::Var.new(arg)
+        when ::Hash, ::Array
+          JQuery::Struct.new(arg)
         else
-          String.new(arg)
+          JQuery::String.new(arg)
         end
       end
     end
