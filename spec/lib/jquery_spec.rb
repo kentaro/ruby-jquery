@@ -16,7 +16,7 @@ module Kernel
 
     context 'when called with a symbol argument' do
       it {
-        expect(jQuery(:'document').to_s).to be == 'jQuery(document)'
+        expect(jQuery(:document).to_s).to be == 'jQuery(document)'
       }
     end
 

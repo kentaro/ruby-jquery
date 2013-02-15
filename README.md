@@ -1,6 +1,31 @@
 # ruby-jquery  [![BuildStatus](https://secure.travis-ci.org/kentaro/ruby-jquery.png)](http://travis-ci.org/kentaro/ruby-jquery)
 
-TODO: Write a gem description
+ruby-jquery is a jQuery expression genelator.
+
+## Synopsis
+
+```ruby
+require 'jquery'
+
+jQuery()                                       #=> jQuery()
+jQuery('a')                                    #=> jQuery("a")
+jQuery(:document)                              #=> jQuery(document)
+jQuery('a').text()                             #=> jQuery("a").text()
+jQuery('a').text('aaa')                        #=> jQuery("a").text("aaa")
+jQuery('a').foo(['a', 'b'])                    #=> jQuery("a").foo(["a","b"])
+jQuery('a').foo({'a' => 'b'})                  #=> jQuery("a").foo({"a":"b"})
+jQuery('a').click(->(f) { f.e 'return true' }) #=> jQuery("a").click(function (e) { return true })
+```
+
+## With Selenium Driver
+
+You can use this library with [Selenium Driver for Ruby](http://code.google.com/p/selenium/wiki/RubyBindings) like below:
+
+```ruby
+driver.execute_script(
+  "return " . jQuery('#content a').attr('href')
+)
+```
 
 ## Installation
 
@@ -16,9 +41,13 @@ Or install it yourself as:
 
     $ gem install ruby-jquery
 
-## Usage
+## TODO
 
-TODO: Write usage instructions here
+  * Support property access (e.g. `jQuery.ajax(...)` and `jQuery('a').length`). But can I do it with Ruby?
+
+## See Also
+
+  * [String-jQuery](https://github.com/motemen/String-jQuery)
 
 ## Contributing
 
