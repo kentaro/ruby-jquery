@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'jquery/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "jquery"
+  spec.name          = "ruby-jquery"
   spec.version       = JQuery::VERSION
   spec.authors       = ["Kentaro Kuribayashi"]
   spec.email         = ["kentarok@gmail.com"]
