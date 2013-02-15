@@ -14,15 +14,16 @@ module JQuery
     def initialize(label, *args)
       @label = label.to_s
       @args  = args.map do |arg|
-        if arg.is_a?(String)
+        case arg
+        when String
           JSString.new(arg)
-        elsif arg.is_a?(Numeric)
+        when Numeric
           JSNumeric.new(arg)
-        elsif arg.is_a?(Symbol)
+        when Symbol
           JSVar.new(arg)
-        elsif arg.is_a?(Array) || arg.is_a?(Hash)
+        when Array, Hash
           JSStruct.new(arg)
-        elsif arg.is_a?(Proc)
+        when Proc
           JSFunction.new(arg)
         else
           raise ArgumentError.new("#{arg.class} is not supported")
