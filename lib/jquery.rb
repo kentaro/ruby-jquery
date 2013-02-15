@@ -93,9 +93,13 @@ module JQuery
   end
 
   class JSFunction < JSExpr
-    # XXX
     def to_s
-      'function () {}'
+      arg, expression = expr.call(self)
+      "function (#{arg}) { #{expression} }"
+    end
+
+    def method_missing(method, *args)
+      [method, *args]
     end
   end
 end

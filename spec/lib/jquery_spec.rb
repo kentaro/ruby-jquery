@@ -46,7 +46,7 @@ module Kernel
 
     context 'when called with a lambda' do
       it {
-        expect(jQuery(->() {}).to_s).to be == 'jQuery(function () {})'
+        expect(jQuery(->(f) { f.e 'return true' }).to_s).to be == 'jQuery(function (e) { return true })'
       }
     end
 
@@ -229,10 +229,10 @@ module JQuery
 
   describe JSFunction do
     describe '#to_s' do
-      let(:obj) { JQuery::JSFunction.new(->() {}) }
+      let(:obj) { JQuery::JSFunction.new(->(f) { f.e 'return true' }) }
 
       it {
-        expect(obj.to_s).to be == 'function () {}'
+        expect(obj.to_s).to be == 'function (e) { return true }'
       }
     end
   end
