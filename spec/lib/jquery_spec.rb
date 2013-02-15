@@ -32,6 +32,18 @@ describe JQuery do
       }
     end
 
+    context 'when called with an array argument' do
+      it {
+        expect(jQuery(['a', 'b']).to_s).to be == 'jQuery(["a","b"])'
+      }
+    end
+
+    context 'when called with a hash argument' do
+      it {
+        expect(jQuery({'a' => 'b'}).to_s).to be == 'jQuery({"a":"b"})'
+      }
+    end
+
     context 'when called with a lambda' do
       it {
         expect(jQuery(->() {}).to_s).to be == 'jQuery(function () {})'

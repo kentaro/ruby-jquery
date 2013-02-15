@@ -1,3 +1,4 @@
+require "json"
 require "jquery/version"
 
 module Kernel
@@ -22,6 +23,8 @@ module JQuery
           Numeric.new(arg)
         elsif arg.kind_of?(Symbol)
           Var.new(arg)
+        elsif arg.kind_of?(Hash) || arg.kind_of?(Array)
+          Struct.new(arg)
         else
           String.new(arg)
         end
@@ -90,6 +93,18 @@ module JQuery
 
     def to_s
       expr.to_s
+    end
+  end
+
+  class Struct
+    attr_accessor :expr
+
+    def initialize(expr)
+      @expr = expr
+    end
+
+    def to_s
+      JSON.dump(expr)
     end
   end
 
