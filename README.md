@@ -1,4 +1,4 @@
-# Jquery
+# ruby-jquery  [![BuildStatus](https://secure.travis-ci.org/kentaro/ruby-jquery.png)](http://travis-ci.org/kentaro/ruby-jquery)
 
 TODO: Write a gem description
 
@@ -6,7 +6,7 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'jquery'
+    gem 'ruby-jquery'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install jquery
+    $ gem install ruby-jquery
 
 ## Usage
 
