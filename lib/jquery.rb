@@ -14,19 +14,18 @@ module JQuery
     def initialize(label, *args)
       @label = label.to_s
       @args  = args.map do |arg|
-        if arg.kind_of?(Proc)
-          Lambda.new(arg)
-
-        # `arg.kind_of?(Numeric)` isn't true.
-        # Why not???
-        elsif arg.kind_of?(Integer) || arg.kind_of?(Float)
-          Numeric.new(arg)
-        elsif arg.kind_of?(Symbol)
-          Var.new(arg)
-        elsif arg.kind_of?(Hash) || arg.kind_of?(Array)
-          Struct.new(arg)
+        if arg.is_a?(String)
+          JSString.new(arg)
+        elsif arg.is_a?(Numeric)
+          JSNumeric.new(arg)
+        elsif arg.is_a?(Symbol)
+          JSVar.new(arg)
+        elsif arg.is_a?(Array) || arg.is_a?(Hash)
+          JSStruct.new(arg)
+        elsif arg.is_a?(Proc)
+          JSFunction.new(arg)
         else
-          String.new(arg)
+          raise ArgumentError.new("#{arg.class} is not supported")
         end
       end
     end
@@ -60,61 +59,39 @@ module JQuery
     end
   end
 
-  class String
+  class JSExpr
     attr_accessor :expr
 
     def initialize(expr)
       @expr = expr
     end
+  end
 
+  class JSString < JSExpr
     def to_s
       %Q|"#{expr}"|
     end
   end
 
-  class Numeric
-    attr_accessor :expr
-
-    def initialize(expr)
-      @expr = expr
-    end
-
+  class JSNumeric < JSExpr
     def to_s
       expr
     end
   end
 
-  class Var
-    attr_accessor :expr
-
-    def initialize(expr)
-      @expr = expr
-    end
-
+  class JSVar < JSExpr
     def to_s
       expr.to_s
     end
   end
 
-  class Struct
-    attr_accessor :expr
-
-    def initialize(expr)
-      @expr = expr
-    end
-
+  class JSStruct < JSExpr
     def to_s
       JSON.dump(expr)
     end
   end
 
-  class Lambda
-    attr_accessor :expr
-
-    def initialize(expr)
-      @expr = expr
-    end
-
+  class JSFunction < JSExpr
     # XXX
     def to_s
       'function () {}'
