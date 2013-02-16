@@ -52,6 +52,8 @@ module JQuery
       result.join('.')
     end
 
+    alias_method :to_str, :to_s
+
     def method_missing(method, *args)
       next_obj    = self.class.new(method, *args)
       self.next   = next_obj
