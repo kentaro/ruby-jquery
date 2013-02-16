@@ -1,6 +1,6 @@
 # ruby-jquery  [![BuildStatus](https://secure.travis-ci.org/kentaro/ruby-jquery.png)](http://travis-ci.org/kentaro/ruby-jquery)
 
-ruby-jquery is a jQuery expression genelator.
+ruby-jquery is a jQuery expression generator.
 
 ## Synopsis
 

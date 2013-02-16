@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = JQuery::VERSION
   spec.authors       = ["Kentaro Kuribayashi"]
   spec.email         = ["kentarok@gmail.com"]
-  spec.description   = %q{jQuery Expression Genelator}
-  spec.summary       = %q{jQuery Expression Genelator}
+  spec.description   = %q{jQuery Expression Generator}
+  spec.summary       = %q{jQuery Expression Generator}
   spec.homepage      = "http://github.com/kentaro/ruby-jquery"
   spec.license       = "MIT"
 
