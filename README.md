@@ -26,7 +26,7 @@ You can use this library with [Selenium Driver for Ruby](http://code.google.com/
 
 ```ruby
 driver.execute_script(
-  "return " . jQuery('#content a').attr('href')
+  "return " << jQuery('#content a').attr('href')
 )
 ```
 
