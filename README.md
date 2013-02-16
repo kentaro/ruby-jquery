@@ -15,6 +15,9 @@ jQuery('a').text('aaa')                        #=> jQuery("a").text("aaa")
 jQuery('a').foo(['a', 'b'])                    #=> jQuery("a").foo(["a","b"])
 jQuery('a').foo({'a' => 'b'})                  #=> jQuery("a").foo({"a":"b"})
 jQuery('a').click(->(f) { f.e 'return true' }) #=> jQuery("a").click(function (e) { return true })
+
+jQuery('#content').show().on('click', 'a', ->(f) { f.e 'return true' })
+#=> jQuery("#content").show().on("click","a",function (e) { return true })
 ```
 
 ## With Selenium Driver

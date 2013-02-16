@@ -52,7 +52,8 @@ module Kernel
 
     context 'when called with method chain and various arguments' do
       it {
-        expect(jQuery('a').click(->(f) { f.e 'return true' }).to_s).to be == 'jQuery("a").click(function (e) { return true })'
+        expect(jQuery('#content').show().on('click', 'a', ->(f) { f.e 'return true' }).to_s).to be ==
+          'jQuery("#content").show().on("click","a",function (e) { return true })'
       }
     end
   end
