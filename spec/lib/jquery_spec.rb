@@ -142,7 +142,7 @@ module JQuery
           }
         end
 
-        context 'and it is an unsupportedc object' do
+        context 'and it is an unsupported object' do
           it {
             expect {
               JQuery::Object.new(:jQuery, Object.new)
